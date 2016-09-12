@@ -1,12 +1,12 @@
 # This test set ensures that methods from `src/functions.jl` behave the same way as they should
 # This is checked by comparing results of particular methods with corresponding output from ExPASy.
-import ProtParam: 
+import ProtParam:
     negativecount,
     positivecount,
     half_life,
     instability_index,
     stability,
-    isoelectric_point, 
+    isoelectric_point,
     gravy,
     extinction_coeff,
     molecular_weight,
@@ -26,13 +26,13 @@ test_data = [
             "half_life" => Dict(
                 "Mammalian, in vitro" => "0.8 hour",
                 "Yeast, in vivo" => "10 min",
-                "E.Coli, in vivo" => "10 hour"
+                "E.Coli, in vivo" => ">10 hour"
             ), # this dict is used to test half_life function with `make_string` parameter set to true
             "instability_index" => 32.99,
             "stability" => "stable",
             "isoelectric_point" => 8.86,
             "gravy" => -0.454,
-            "extinction_coeff" => (36900,37025), 
+            "extinction_coeff" => (36900,37025),
             "molecular_weight" => 12984.44,
             "absorbance" => (2.842, 2.851),
             "atom_composition" => Dict(
@@ -45,8 +45,8 @@ test_data = [
             "number_of_atoms" => 1781,
             "aliphatic_index" => 51.68
         )
-    ), 
-    (   
+    ),
+    (
         "PCNA",
         aa"MFEARLVQGSILKKVLEALKDLINEACWDISSSGVNLQSMDSSHVSLVQLTLRSEGFDTYRCDRNLAMGVNLTSMSKILKCAGNEDIITLRAEDNADTLALVFEAPNQEKVSDYEMKLMDLDVEQLGIPEQEYSCVVKMPSGEFARICRDLSHIGDAVVISCAKDGVKFSASGELGNGNIKLSQTSNVDKEEEAVTIEMNEPVQLTFALRYLNFFTKATPLSSTVTLSMSADVPLVVEYKIADMGHLKYYLAPKIEDEEGS",
         Dict(
@@ -61,7 +61,7 @@ test_data = [
             "stability" => "unstable",
             "isoelectric_point" => 4.57,
             "gravy" => -0.095,
-            "extinction_coeff" => (15930,16305), 
+            "extinction_coeff" => (15930,16305),
             "molecular_weight" => 28768.78,
             "absorbance" => (0.554, 0.567),
             "atom_composition" => Dict(
@@ -106,7 +106,7 @@ test_data = [
     )
 ]
 
-# Following code cycles through examples given in test_data array, for each of 
+# Following code cycles through examples given in test_data array, for each of
 # them compares values of functions (each function given as a key in Dict) with
 # corresponding expected values (which were taken from ExPASy output).
 for (name, sequence, data) in test_data
